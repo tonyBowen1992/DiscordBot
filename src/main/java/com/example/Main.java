@@ -42,7 +42,7 @@ public class Main extends ListenerAdapter{
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
-    JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.eWezTLGQDVxNDcM9QnUuavPnes4", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+    JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.5kqjXwp77HkZ9uOnhJe_VyPLtYo", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
             .addEventListeners(new Main())
             .build();
     Timer timer = new Timer();
@@ -58,12 +58,14 @@ public class Main extends ListenerAdapter{
     String messageTest = msg.getContentRaw().toLowerCase();
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
+
       File file = new File("dix.png");
       System.out.println("Pa = " + file.getPath());
       System.out.println("Aa = " + file.getAbsolutePath());
 
       MessageChannel channel = event.getChannel();
-      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+      //event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
 
     }
     else if (author.getName().equals("Carlos Pascetti")){
