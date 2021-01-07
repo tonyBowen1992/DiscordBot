@@ -53,13 +53,13 @@ public class Main extends ListenerAdapter{
     Message msg = event.getMessage();
     String messageTest = msg.getContentRaw().toLowerCase();
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
-      File file = new File("resources\\dix.png");
-      System.out.println("Pa = " + file.getPath());
-      System.out.println("Aa = " + file.getAbsolutePath());
+      //File file = new File("resources\\dix.png");
+      //System.out.println("Pa = " + file.getPath());
+      //System.out.println("Aa = " + file.getAbsolutePath());
 
       MessageChannel channel = event.getChannel();
-      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
-      //event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
+      //event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
 
     }
     else if (author.getName().equals("Carlos Pascetti")){
