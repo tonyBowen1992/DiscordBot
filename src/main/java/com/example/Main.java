@@ -1,21 +1,13 @@
-/*
- * Copyright 2002-2014 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example;
 
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+
+import javax.security.auth.login.LoginException;
+import java.io.File;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +28,7 @@ import java.util.Map;
 
 @Controller
 @SpringBootApplication
-public class Main {
+public class Main extends ListenerAdapter{
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
@@ -44,8 +36,45 @@ public class Main {
   @Autowired
   private DataSource dataSource;
 
+  int jasonCounter = 0;
+
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
+    JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.eWezTLGQDVxNDcM9QnUuavPnes4", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+            .addEventListeners(new Main())
+            .build();
+  }
+
+  @Override
+  public void onMessageReceived(MessageReceivedEvent event)
+  {
+    User author = event.getAuthor();
+    Message msg = event.getMessage();
+    String messageTest = msg.getContentRaw().toLowerCase();
+    if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
+      File file = new File("src\\main\\resources\\dix.png");
+      System.out.println("Pa = " + file.getPath());
+      System.out.println("Aa = " + file.getAbsolutePath());
+
+      MessageChannel channel = event.getChannel();
+      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+
+    }
+    else if (author.getName().equals("Carlos Pascetti")){
+      if(jasonCounter < 5)
+      {
+        jasonCounter++;
+        System.out.println("jc = " + jasonCounter);
+      }
+      else
+      {
+        MessageChannel channel = event.getChannel();
+        channel.sendMessage("Have you eaten any vegetables today?") /* => RestAction<Message> */
+                .queue();
+        jasonCounter = 0;
+      }
+    }
   }
 
   @RequestMapping("/")
