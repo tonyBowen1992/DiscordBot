@@ -59,6 +59,7 @@ public class Main extends ListenerAdapter{
 
       MessageChannel channel = event.getChannel();
       event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+      //event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
 
     }
     else if (author.getName().equals("Carlos Pascetti")){
