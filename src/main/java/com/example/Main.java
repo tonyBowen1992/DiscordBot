@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Timer;
 
 @Controller
 @SpringBootApplication
@@ -44,6 +45,9 @@ public class Main extends ListenerAdapter{
     JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.eWezTLGQDVxNDcM9QnUuavPnes4", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
             .addEventListeners(new Main())
             .build();
+    Timer timer = new Timer();
+    timer.schedule(new SayHello(), 0, 600000);
+
   }
 
   @Override
@@ -52,8 +56,9 @@ public class Main extends ListenerAdapter{
     User author = event.getAuthor();
     Message msg = event.getMessage();
     String messageTest = msg.getContentRaw().toLowerCase();
+
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
-      File file = new File("src\\main\\resources\\dix.png");
+      File file = new File("dix.png");
       System.out.println("Pa = " + file.getPath());
       System.out.println("Aa = " + file.getAbsolutePath());
 
