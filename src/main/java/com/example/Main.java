@@ -99,9 +99,11 @@ public class Main extends ListenerAdapter{
       {
         channel.sendMessage("somegame Participants and $:") /* => RestAction<Message> */
                 .queue();
-        gameMap.entrySet().forEach(entry->{
-          System.out.println(entry.getKey() + " $" + entry.getValue());
-        });
+        Iterator it = gameMap.entrySet().iterator();
+        while(it.hasNext()) {
+          Map.Entry obj = (Map.Entry) it.next();
+          channel.sendMessage(obj.getKey() + ": $" + obj.getValue()) /* => RestAction<Message> */
+                  .queue();
         }
     }
     else if (author.getName().equals("Carlos Pascetti")){
