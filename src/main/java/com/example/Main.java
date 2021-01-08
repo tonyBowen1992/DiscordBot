@@ -75,7 +75,7 @@ public class Main extends ListenerAdapter{
     String messageTest = msg.getContentRaw().toLowerCase();
     MessageChannel channel = event.getChannel();
 
-    if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
+    if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT")) && !(messageTest.contains("findgif"))){
       EmbedBuilder result= new EmbedBuilder();
       result.setTitle("Dick is bad. Dix is lvl99");
       result.setImage("http://tonybowen.me/dix.png");
