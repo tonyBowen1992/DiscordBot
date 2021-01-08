@@ -24,6 +24,8 @@
     <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
   </properties>
 
+
+
   <repositories>
     <repository>
       <id>jcenter</id>
@@ -97,6 +99,11 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
