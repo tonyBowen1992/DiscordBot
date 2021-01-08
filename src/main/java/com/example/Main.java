@@ -54,7 +54,6 @@ public class Main extends ListenerAdapter{
   private DataSource dataSource;
 
   int jasonCounter = 0;
-  boolean playsomegame = false;
   List<String> gameList = new ArrayList<>();
 
 
@@ -87,8 +86,7 @@ public class Main extends ListenerAdapter{
 
     }
     else if ((messageTest.contains("playsomegame") || messageTest.contains("iwannaplay") || messageTest.contains("startsomegame")) && !(author.getName().equals("Mr. roBOT"))){
-      if(playsomegame = false) {
-        playsomegame = true;
+      if(messageTest.contains("playsomegame")){
         channel.sendMessage("Lets play a game! Type iwannaplay to participate and startsomegame to start") /* => RestAction<Message> */
                 .queue();
       }
@@ -109,11 +107,6 @@ public class Main extends ListenerAdapter{
                   .queue();
         }
       }
-
-
-
-
-
     }
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
