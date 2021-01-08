@@ -82,6 +82,24 @@ public class Main extends ListenerAdapter{
 
 
     }
+    else if(messageTest.contains("losesomemoney"))
+    {
+      int value = 0;
+      if(gameMap.containsKey(author.getName()))
+      {
+        value = gameMap.get(author.getName());
+        gameMap.replace(author.getName(), (value-5));
+      }
+    }
+    else if(messageTest.contains("gainsomemoney"))
+    {
+      int value = 0;
+      if(gameMap.containsKey(author.getName()))
+      {
+        value = gameMap.get(author.getName());
+        gameMap.replace(author.getName(), (value+5));
+      }
+    }
     else if ((messageTest.contains("playsomegame") || messageTest.contains("iwannaplay") || messageTest.contains("startsomegame")) && !(author.getName().equals("Mr. roBOT"))) {
       if (messageTest.contains("playsomegame")) {
         channel.sendMessage("Lets play a game! Type iwannaplay to participate and startsomegame to start") /* => RestAction<Message> */
