@@ -126,7 +126,7 @@ public class Main extends ListenerAdapter{
 
       Giphy giphy = new Giphy("4SoqP1X0f38P3FRthyRe97l7f8Vnd51q");
 
-      channel.sendMessage("Searching giphy for " + gifSearch) /* => RestAction<Message> */
+      channel.sendMessage("Searchingg giphy for " + gifSearch) /* => RestAction<Message> */
               .queue();
 
 
