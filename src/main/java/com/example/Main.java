@@ -83,11 +83,18 @@ public class Main extends ListenerAdapter{
     }
     else if(messageTest.contains("findgif"))
     {
+
+      String gifSearch = messageTest;
+      gifSearch = gifSearch.replace("findgif ","");
+
       Giphy giphy = new Giphy("4SoqP1X0f38P3FRthyRe97l7f8Vnd51q");
+
+      channel.sendMessage("Searching giphy for " + gifSearch) /* => RestAction<Message> */
+              .queue();
 
       SearchFeed feed = null;
       try {
-        feed = giphy.search("cat", 1, 0);
+        feed = giphy.search(gifSearch, 1, 0);
       } catch (GiphyException e) {
         e.printStackTrace();
       }
