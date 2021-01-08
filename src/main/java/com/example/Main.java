@@ -69,10 +69,10 @@ public class Main extends ListenerAdapter{
 
       MessageChannel channel = event.getChannel();
 
-      File file = new File("dix.png");
-      System.out.println("Pa = " + file.getPath());
-      System.out.println("Aa = " + file.getAbsolutePath());
-      channel.sendMessage("message").addFile(new File("dix.png")).queue();
+      EmbedBuilder result= new EmbedBuilder();
+      result.setTitle("Here's a cat!");
+      result.setImage("http://thecatapi.com/api/images/get?format=src&type=png");
+      event.getChannel().sendMessage(result.build()).queue();
 
       // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
