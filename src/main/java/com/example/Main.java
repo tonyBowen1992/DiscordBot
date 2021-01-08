@@ -78,7 +78,7 @@ public class Main extends ListenerAdapter{
       result.setImage("http://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
     }
-    else if(messageTest.contains("flipacoin heads"))
+    else if(messageTest.contains("flipacoin heads") && !(author.getName().equals("Mr. roBOT")))
     {
       int temp = (Math.random() <= 0.5) ? 1 : 2;
       //Heads = 1, Tails = 2
@@ -103,7 +103,7 @@ public class Main extends ListenerAdapter{
         }
       }
     }
-    else if(messageTest.contains("flipacoin tails"))
+    else if(messageTest.contains("flipacoin tails") && !(author.getName().equals("Mr. roBOT")))
     {
       int temp = (Math.random() <= 0.5) ? 1 : 2;
       //Heads = 1, Tails = 2
