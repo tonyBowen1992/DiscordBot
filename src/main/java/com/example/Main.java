@@ -93,14 +93,14 @@ public class Main extends ListenerAdapter{
               .queue();
       SearchFeed feed = null;
       try {
-        feed = giphy.search(gifSearch, 1, 0);
+        feed = giphy.search(gifSearch, 1, 1);
       } catch (GiphyException e) {
         e.printStackTrace();
       }
         JDA JDA = channel.getJDA();
         OkHttpClient http = JDA.getHttpClient();
         EmbedBuilder result= new EmbedBuilder();
-        
+
       channel.sendMessage(feed.getDataList().get(0).getImages().getOriginal().getUrl()) /* => RestAction<Message> */
               .queue();
 
