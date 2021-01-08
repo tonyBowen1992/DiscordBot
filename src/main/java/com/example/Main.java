@@ -59,7 +59,7 @@ public class Main extends ListenerAdapter{
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
-    JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.zITYw6lLGoqvM-d4jlu7iiY57K4", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+    JDABuilder.createLight("Nzk2NTIxNTE3Mzk5NjcwODA0.X_ZIeA.iNHyE3NsSRQB9VxX1_Eb_7qC6Cg", GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
             .addEventListeners(new Main())
             .build();
     Timer timer = new Timer();
@@ -94,7 +94,7 @@ public class Main extends ListenerAdapter{
       if(messageTest.contains("iwannaplay"))
       {
         gameList.add(author.getName());
-        channel.sendMessage("Fuck you" + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
+        channel.sendMessage("Fuck you " + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
                 .queue();
       }
 
