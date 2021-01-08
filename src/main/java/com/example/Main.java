@@ -100,8 +100,9 @@ public class Main extends ListenerAdapter{
         JDA JDA = channel.getJDA();
         OkHttpClient http = JDA.getHttpClient();
         EmbedBuilder result= new EmbedBuilder();
-
-      System.out.println(feed.getDataList().get(0).getImages().getOriginal().getUrl());
+        
+      channel.sendMessage(feed.getDataList().get(0).getImages().getOriginal().getUrl()) /* => RestAction<Message> */
+              .queue();
 
 
       okhttp3.Request request = new Request.Builder().url(feed.getDataList().get(0).getImages().getOriginal().getUrl()).build();
