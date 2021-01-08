@@ -91,7 +91,6 @@ public class Main extends ListenerAdapter{
 
       channel.sendMessage("Searching giphy for " + gifSearch) /* => RestAction<Message> */
               .queue();
-
       SearchFeed feed = null;
       try {
         feed = giphy.search(gifSearch, 1, 0);
@@ -102,7 +101,10 @@ public class Main extends ListenerAdapter{
         OkHttpClient http = JDA.getHttpClient();
         EmbedBuilder result= new EmbedBuilder();
 
-        okhttp3.Request request = new Request.Builder().url(feed.getDataList().get(0).getImages().getOriginal().getUrl()).build();
+      System.out.println(feed.getDataList().get(0).getImages().getOriginal().getUrl());
+
+
+      okhttp3.Request request = new Request.Builder().url(feed.getDataList().get(0).getImages().getOriginal().getUrl()).build();
         Response response = null;
         try {
           response = http.newCall(request).execute();
