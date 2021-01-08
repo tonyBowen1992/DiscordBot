@@ -70,7 +70,7 @@ public class Main extends ListenerAdapter{
       MessageChannel channel = event.getChannel();
 
 
-      channel.sendFile(new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg")).queue();
+      channel.sendMessage("message").addFile(new File("/com/example/dix.png")).queue();
 
       // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
