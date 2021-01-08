@@ -62,7 +62,7 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      File file = new File("/com/example/dix.png");
+      File file = new File("dix.png");
 
       //File file = new File("/resources/dix.png");
 
