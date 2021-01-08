@@ -69,22 +69,8 @@ public class Main extends ListenerAdapter{
 
       MessageChannel channel = event.getChannel();
 
-      EmbedBuilder embed = new EmbedBuilder();
-      try (InputStream file = new URL("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg").openStream()) {
-        embed.setImage("attachment://cat.png") // we specify this in sendFile as "cat.png"
-                .setDescription("This is a cute cat :3");
-        channel.sendFile(file, "cat.png").embed(embed.build()).queue();
 
-
-        // this name does not have to be the same name the file has locally, it can be anything as long as the file extension is correct
-        channel.sendMessage(embed.build())
-                .addFile(file, "dix.png")
-                .queue();
-      } catch (MalformedURLException e) {
-        e.printStackTrace();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      channel.sendFile(new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg")).queue();
 
       // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
