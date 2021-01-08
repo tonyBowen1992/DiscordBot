@@ -81,6 +81,43 @@ public class Main extends ListenerAdapter{
       result.setImage("http://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
     }
+    else if(messageTest.contains("findporn"))
+    {
+      {
+        JDA JDA = channel.getJDA();
+        OkHttpClient http = JDA.getHttpClient();
+        EmbedBuilder result= new EmbedBuilder();
+
+        okhttp3.Request request = new Request.Builder().url("https://porngifs.com/img/6876").build();
+        Response response = null;
+        try {
+          response = http.newCall(request).execute();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        try {
+          response = http.newCall(request).execute();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        try {
+          InputStream body = response.body().byteStream();
+          result.setImage("attachment://image.gif"); // Use same file name from attachment
+          Response finalResponse = response;
+          Response finalResponse1 = response;
+          channel.sendMessage(result.build())
+                  .addFile(body, "image.gif") // Specify file name as "image.png" for embed (this must be the same, its a reference which attachment belongs to which image in the embed)
+                  .queue(m -> finalResponse.close(), error -> { // Send message and close response when done
+                    finalResponse1.close();
+                    RestAction.getDefaultFailure().accept(error);
+                  });
+        } catch (Throwable ex) {
+          response.close();
+          if (ex instanceof Error) throw (Error) ex;
+          else throw (RuntimeException) ex;
+        }
+      }
+    }
     else if(messageTest.contains("findgif"))
     {
 
