@@ -115,11 +115,11 @@ public class Main extends ListenerAdapter{
       }
       try {
         InputStream body = response.body().byteStream();
-        result.setImage("attachment://image.png"); // Use same file name from attachment
+        result.setImage("attachment://image.gif"); // Use same file name from attachment
         Response finalResponse = response;
         Response finalResponse1 = response;
         channel.sendMessage(result.build())
-                .addFile(body, "image.png") // Specify file name as "image.png" for embed (this must be the same, its a reference which attachment belongs to which image in the embed)
+                .addFile(body, "image.gif") // Specify file name as "image.png" for embed (this must be the same, its a reference which attachment belongs to which image in the embed)
                 .queue(m -> finalResponse.close(), error -> { // Send message and close response when done
                   finalResponse1.close();
                   RestAction.getDefaultFailure().accept(error);
