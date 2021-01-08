@@ -55,7 +55,7 @@ public class Main extends ListenerAdapter{
             .addEventListeners(new Main())
             .build();
     Timer timer = new Timer();
-    timer.schedule(new SayHello(), 0, 600000);
+    timer.schedule(new SayHello(), 0, 300000);
   }
 
   @Override
