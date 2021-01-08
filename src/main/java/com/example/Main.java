@@ -1,6 +1,7 @@
 package com.example;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -10,6 +11,10 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import java.io.File;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import net.dv8tion.jda.api.requests.RestAction;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -64,10 +69,11 @@ public class Main extends ListenerAdapter{
     User author = event.getAuthor();
     Message msg = event.getMessage();
     String messageTest = msg.getContentRaw().toLowerCase();
+    MessageChannel channel = event.getChannel();
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      MessageChannel channel = event.getChannel();
+
 
       EmbedBuilder result= new EmbedBuilder();
       result.setTitle("Dick is bad. Dix is lvl99");
@@ -84,17 +90,45 @@ public class Main extends ListenerAdapter{
       }
       else
       {
-        MessageChannel channel = event.getChannel();
         channel.sendMessage("Have you eaten any vegetables today?") /* => RestAction<Message> */
                 .queue();
         jasonCounter = 0;
       }
     }
     else if(messageTest.contains("fishing") && !(author.getName().equals("Mr. roBOT"))){
+
+      JDA JDA = channel.getJDA();
+      OkHttpClient http = JDA.getHttpClient();
       EmbedBuilder result= new EmbedBuilder();
-      result.setTitle("Is someone fishing in here?");
-      result.setImage("http://tonybowen.me/fishing.gif");
-      event.getChannel().sendMessage(result.build()).queue();
+
+      okhttp3.Request request = new Request.Builder().url("http://tonybowen.me/fishing.gif").build();
+      Response response = null;
+      try {
+        response = http.newCall(request).execute();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      try {
+        response = http.newCall(request).execute();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      try {
+        InputStream body = response.body().byteStream();
+        result.setImage("attachment://image.png"); // Use same file name from attachment
+        Response finalResponse = response;
+        Response finalResponse1 = response;
+        channel.sendMessage(result.build())
+                .addFile(body, "image.png") // Specify file name as "image.png" for embed (this must be the same, its a reference which attachment belongs to which image in the embed)
+                .queue(m -> finalResponse.close(), error -> { // Send message and close response when done
+                  finalResponse1.close();
+                  RestAction.getDefaultFailure().accept(error);
+                });
+      } catch (Throwable ex) {
+        response.close();
+        if (ex instanceof Error) throw (Error) ex;
+        else throw (RuntimeException) ex;
+      }
     }
   }
 
