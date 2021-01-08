@@ -49,6 +49,7 @@ public class Main extends ListenerAdapter{
 
   @Autowired
   private DataSource dataSource;
+  boolean gameStarted = false;
 
   int jasonCounter = 0;
   Map<String, Integer> gameMap = new HashMap<>();
@@ -72,15 +73,60 @@ public class Main extends ListenerAdapter{
     MessageChannel channel = event.getChannel();
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
-
-
-
       EmbedBuilder result= new EmbedBuilder();
       result.setTitle("Dick is bad. Dix is lvl99");
       result.setImage("http://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
-
-
+    }
+    else if(messageTest.contains("flipacoin heads"))
+    {
+      int temp = (Math.random() <= 0.5) ? 1 : 2;
+      //Heads = 1, Tails = 2
+      if(temp == 1){
+        channel.sendMessage("It was Heads! Gain some money Boi") /* => RestAction<Message> */
+                .queue();
+        int value = 0;
+        if(gameMap.containsKey(author.getName()))
+        {
+          value = gameMap.get(author.getName());
+          gameMap.replace(author.getName(), (value+5));
+        }
+      }
+      else {
+        channel.sendMessage("It was Tails idiot lose some money") /* => RestAction<Message> */
+                .queue();
+        int value = 0;
+        if(gameMap.containsKey(author.getName()))
+        {
+          value = gameMap.get(author.getName());
+          gameMap.replace(author.getName(), (value-5));
+        }
+      }
+    }
+    else if(messageTest.contains("flipacoin tails"))
+    {
+      int temp = (Math.random() <= 0.5) ? 1 : 2;
+      //Heads = 1, Tails = 2
+      if(temp == 2){
+        channel.sendMessage("It was Tails! Gain some money Boi") /* => RestAction<Message> */
+                .queue();
+        int value = 0;
+        if(gameMap.containsKey(author.getName()))
+        {
+          value = gameMap.get(author.getName());
+          gameMap.replace(author.getName(), (value+5));
+        }
+      }
+      else {
+        channel.sendMessage("It was Heads idiot lose some money") /* => RestAction<Message> */
+                .queue();
+        int value = 0;
+        if(gameMap.containsKey(author.getName()))
+        {
+          value = gameMap.get(author.getName());
+          gameMap.replace(author.getName(), (value-5));
+        }
+      }
     }
     else if(messageTest.contains("losesomemoney"))
     {
@@ -111,7 +157,6 @@ public class Main extends ListenerAdapter{
         channel.sendMessage("Fuck you " + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
                 .queue();
       }
-
       if (messageTest.contains("startsomegame")) {
         channel.sendMessage("somegame Participants and $:") /* => RestAction<Message> */
                 .queue();
@@ -120,9 +165,13 @@ public class Main extends ListenerAdapter{
           Map.Entry obj = (Map.Entry) it.next();
           channel.sendMessage(obj.getKey() + ": $" + obj.getValue()) /* => RestAction<Message> */
                   .queue();
+          }
+
+        channel.sendMessage("Type flipacoin followed by heads or tails (i.e. flipacoin heads)") /* => RestAction<Message> */
+                .queue();
         }
       }
-    }
+
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
       {
