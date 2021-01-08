@@ -37,10 +37,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -54,7 +51,7 @@ public class Main extends ListenerAdapter{
   private DataSource dataSource;
 
   int jasonCounter = 0;
-  List<String> gameList = new ArrayList<>();
+  Map<String, Integer> gameMap = new HashMap<>();
 
 
   public static void main(String[] args) throws Exception {
@@ -93,20 +90,19 @@ public class Main extends ListenerAdapter{
 
       if(messageTest.contains("iwannaplay"))
       {
-        gameList.add(author.getName());
+        gameMap.put(author.getName(), 50);
         channel.sendMessage("Fuck you " + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
                 .queue();
       }
 
       if(messageTest.contains("startsomegame"))
       {
-        channel.sendMessage("somegame Participants:") /* => RestAction<Message> */
+        channel.sendMessage("somegame Participants and $:") /* => RestAction<Message> */
                 .queue();
-        for(int i = 0; i < gameList.size(); i++) {
-          channel.sendMessage(gameList.get(i)) /* => RestAction<Message> */
-                  .queue();
+        gameMap.entrySet().forEach(entry->{
+          System.out.println(entry.getKey() + " $" + entry.getValue());
+        });
         }
-      }
     }
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
