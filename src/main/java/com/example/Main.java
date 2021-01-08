@@ -62,7 +62,7 @@ public class Main extends ListenerAdapter{
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
 
-      File file = new File("\\resources\\dix.png");
+      File file = new File("/resources/dix.png");
 
       MessageChannel channel = event.getChannel();
       System.out.println("Pa = " + file.getPath());
