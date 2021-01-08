@@ -70,8 +70,8 @@ public class Main extends ListenerAdapter{
       MessageChannel channel = event.getChannel();
 
       EmbedBuilder result= new EmbedBuilder();
-      result.setTitle("Here's a cat!");
-      result.setImage("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
+      result.setTitle("Dick is bad. Dix is lvl99");
+      result.setImage("https://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
 
 
