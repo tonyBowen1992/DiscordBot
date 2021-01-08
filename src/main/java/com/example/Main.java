@@ -69,7 +69,9 @@ public class Main extends ListenerAdapter{
 
       MessageChannel channel = event.getChannel();
 
-
+      File file = new File("/com/example/dix.png");
+      System.out.println("Pa = " + file.getPath());
+      System.out.println("Aa = " + file.getAbsolutePath());
       channel.sendMessage("message").addFile(new File("/com/example/dix.png")).queue();
 
       // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
