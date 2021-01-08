@@ -1,5 +1,6 @@
 package com.example;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -62,12 +63,24 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      File file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
+      File file = new File("dix.png");
+      EmbedBuilder embed = new EmbedBuilder();
+
+      embed.setImage("attachment://dix.png");
+
+      MessageChannel channel = event.getChannel();
+
+
+      // this name does not have to be the same name the file has locally, it can be anything as long as the file extension is correct
+      channel.sendMessage(embed.build())
+              .addFile(file, "dix.png")
+              .queue();
+
+      // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
       //File file = new File("/resources/dix.png");
 
-      MessageChannel channel = event.getChannel();
-      System.out.println("file = " + file);
+      /*System.out.println("file = " + file);
       System.out.println("Pa = " + file.getPath());
       System.out.println("Aa = " + file.getAbsolutePath());
       if(file.exists()){
@@ -76,7 +89,7 @@ public class Main extends ListenerAdapter{
       else {
         event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
       }
-
+       */
     }
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
