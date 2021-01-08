@@ -24,6 +24,10 @@ import org.springframework.web.context.support.ServletContextResource;
 
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,18 +67,24 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      File file = new File("dix.png");
-      EmbedBuilder embed = new EmbedBuilder();
-
-      embed.setImage("attachment://dix.png");
-
       MessageChannel channel = event.getChannel();
 
+      EmbedBuilder embed = new EmbedBuilder();
+      try (InputStream file = new URL("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg").openStream()) {
+        embed.setImage("attachment://cat.png") // we specify this in sendFile as "cat.png"
+                .setDescription("This is a cute cat :3");
+        channel.sendFile(file, "cat.png").embed(embed.build()).queue();
 
-      // this name does not have to be the same name the file has locally, it can be anything as long as the file extension is correct
-      channel.sendMessage(embed.build())
-              .addFile(file, "dix.png")
-              .queue();
+
+        // this name does not have to be the same name the file has locally, it can be anything as long as the file extension is correct
+        channel.sendMessage(embed.build())
+                .addFile(file, "dix.png")
+                .queue();
+      } catch (MalformedURLException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
       // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
