@@ -90,6 +90,12 @@ public class Main extends ListenerAdapter{
         jasonCounter = 0;
       }
     }
+    else if(messageTest.contains("fishing") && !(author.getName().equals("Mr. roBOT"))){
+      EmbedBuilder result= new EmbedBuilder();
+      result.setTitle("Is someone fishing in here?");
+      result.setImage("http://tonybowen.me/fishing.gif");
+      event.getChannel().sendMessage(result.build()).queue();
+    }
   }
 
   @RequestMapping("/")
