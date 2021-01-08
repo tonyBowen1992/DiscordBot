@@ -62,13 +62,12 @@ public class Main extends ListenerAdapter{
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
 
-      File file = new File("dix.png");
+      File file = new File("\\resources\\dix.png");
 
       MessageChannel channel = event.getChannel();
-
+      System.out.println("Pa = " + file.getPath());
+      System.out.println("Aa = " + file.getAbsolutePath());
       if(file.exists()){
-        System.out.println("Pa = " + file.getPath());
-        System.out.println("Aa = " + file.getAbsolutePath());
 
         event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
       }
