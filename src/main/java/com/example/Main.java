@@ -71,23 +71,10 @@ public class Main extends ListenerAdapter{
 
       EmbedBuilder result= new EmbedBuilder();
       result.setTitle("Here's a cat!");
-      result.setImage("http://thecatapi.com/api/images/get?format=src&type=png");
+      result.setImage("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
       event.getChannel().sendMessage(result.build()).queue();
 
-      // file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
-      //File file = new File("/resources/dix.png");
-
-      /*System.out.println("file = " + file);
-      System.out.println("Pa = " + file.getPath());
-      System.out.println("Aa = " + file.getAbsolutePath());
-      if(file.exists()){
-        event.getChannel().sendFile(file).append("Dick is no bueno, Dix is lvl99").queue();
-      }
-      else {
-        event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
-      }
-       */
     }
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
