@@ -65,7 +65,7 @@ public class Main extends ListenerAdapter{
 
       File file = new File("asfd.png");
       try {
-        file = ResourceUtils.getFile("classpath:dix.png");
+        file = ResourceUtils.getFile("classpath:/resources/dix.png");
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
