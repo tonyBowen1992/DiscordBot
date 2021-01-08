@@ -82,29 +82,28 @@ public class Main extends ListenerAdapter{
 
 
     }
-    else if ((messageTest.contains("playsomegame") || messageTest.contains("iwannaplay") || messageTest.contains("startsomegame")) && !(author.getName().equals("Mr. roBOT"))){
-      if(messageTest.contains("playsomegame")){
+    else if ((messageTest.contains("playsomegame") || messageTest.contains("iwannaplay") || messageTest.contains("startsomegame")) && !(author.getName().equals("Mr. roBOT"))) {
+      if (messageTest.contains("playsomegame")) {
         channel.sendMessage("Lets play a game! Type iwannaplay to participate and startsomegame to start") /* => RestAction<Message> */
                 .queue();
       }
 
-      if(messageTest.contains("iwannaplay"))
-      {
+      if (messageTest.contains("iwannaplay")) {
         gameMap.put(author.getName(), 50);
         channel.sendMessage("Fuck you " + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
                 .queue();
       }
 
-      if(messageTest.contains("startsomegame"))
-      {
+      if (messageTest.contains("startsomegame")) {
         channel.sendMessage("somegame Participants and $:") /* => RestAction<Message> */
                 .queue();
         Iterator it = gameMap.entrySet().iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
           Map.Entry obj = (Map.Entry) it.next();
           channel.sendMessage(obj.getKey() + ": $" + obj.getValue()) /* => RestAction<Message> */
                   .queue();
         }
+      }
     }
     else if (author.getName().equals("Carlos Pascetti")){
       if(jasonCounter < 5)
@@ -119,8 +118,8 @@ public class Main extends ListenerAdapter{
         jasonCounter = 0;
       }
     }
-    else if(messageTest.contains("fishing") && !(author.getName().equals("Mr. roBOT"))){
-
+    else if(messageTest.contains("fishing") && !(author.getName().equals("Mr. roBOT")))
+    {
       JDA JDA = channel.getJDA();
       OkHttpClient http = JDA.getHttpClient();
       EmbedBuilder result= new EmbedBuilder();
