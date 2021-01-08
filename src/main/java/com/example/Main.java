@@ -38,8 +38,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @SpringBootApplication
@@ -52,6 +54,8 @@ public class Main extends ListenerAdapter{
   private DataSource dataSource;
 
   int jasonCounter = 0;
+  boolean playsomegame = false;
+  List<String> gameList = new ArrayList<>();
 
 
   public static void main(String[] args) throws Exception {
@@ -79,6 +83,35 @@ public class Main extends ListenerAdapter{
       result.setTitle("Dick is bad. Dix is lvl99");
       result.setImage("http://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
+
+
+    }
+    else if ((messageTest.contains("playsomegame") || messageTest.contains("iwannaplay") || messageTest.contains("startsomegame")) && !(author.getName().equals("Mr. roBOT"))){
+      if(playsomegame = false) {
+        playsomegame = true;
+        channel.sendMessage("Lets play a game! Type iwannaplay to participate and startsomegame to start") /* => RestAction<Message> */
+                .queue();
+      }
+
+      if(messageTest.contains("iwannaplay"))
+      {
+        gameList.add(author.getName());
+        channel.sendMessage("Fuck you" + author.getName() + ", but I added your ass to the game anyway.") /* => RestAction<Message> */
+                .queue();
+      }
+
+      if(messageTest.contains("startsomegame"))
+      {
+        channel.sendMessage("somegame Participants:") /* => RestAction<Message> */
+                .queue();
+        for(int i = 0; i < gameList.size(); i++) {
+          channel.sendMessage(gameList.get(i)) /* => RestAction<Message> */
+                  .queue();
+        }
+      }
+
+
+
 
 
     }
