@@ -17,9 +17,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -61,14 +63,19 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
+      File file = new File("asfd.png");
+      try {
+        file = ResourceUtils.getFile("classpath:dix.png");
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
 
-      File file = new File("/resources/dix.png");
+      //File file = new File("/resources/dix.png");
 
       MessageChannel channel = event.getChannel();
       System.out.println("Pa = " + file.getPath());
       System.out.println("Aa = " + file.getAbsolutePath());
       if(file.exists()){
-
         event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
       }
       else {
