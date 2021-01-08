@@ -15,10 +15,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -59,13 +61,20 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      File file = new File("\\resources\\dix.png");
-      System.out.println("Pa = " + file.getPath());
-      System.out.println("Aa = " + file.getAbsolutePath());
+
+      File file = new File("dix.png");
 
       MessageChannel channel = event.getChannel();
-      event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
-      //event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
+
+      if(file.exists()){
+        System.out.println("Pa = " + file.getPath());
+        System.out.println("Aa = " + file.getAbsolutePath());
+
+        event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").addFile(file).queue();
+      }
+      else {
+        event.getChannel().sendMessage("Dick is no bueno, Dix is lvl99").queue();
+      }
 
     }
     else if (author.getName().equals("Carlos Pascetti")){
