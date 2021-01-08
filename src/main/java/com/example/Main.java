@@ -91,19 +91,17 @@ public class Main extends ListenerAdapter{
 
       channel.sendMessage("Searching giphy for " + gifSearch) /* => RestAction<Message> */
               .queue();
+
+
       SearchFeed feed = null;
       try {
-        feed = giphy.search(gifSearch, 1, 1);
+        feed = giphy.search(gifSearch, 1, (int) (((Math.random()*(500 - 1))) + 1));
       } catch (GiphyException e) {
         e.printStackTrace();
       }
         JDA JDA = channel.getJDA();
         OkHttpClient http = JDA.getHttpClient();
         EmbedBuilder result= new EmbedBuilder();
-
-      channel.sendMessage(feed.getDataList().get(0).getImages().getOriginal().getUrl()) /* => RestAction<Message> */
-              .queue();
-
 
       okhttp3.Request request = new Request.Builder().url(feed.getDataList().get(0).getImages().getOriginal().getUrl()).build();
         Response response = null;
