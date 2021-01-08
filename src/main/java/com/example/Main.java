@@ -63,12 +63,7 @@ public class Main extends ListenerAdapter{
 
     if(messageTest.contains("dick") && !(author.getName().equals("Mr. roBOT"))){
 
-      File file = new File("asfd.png");
-      try {
-        file = ResourceUtils.getFile("classpath:/resources/dix.png");
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-      }
+      File file = new File("https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg");
 
       //File file = new File("/resources/dix.png");
 
