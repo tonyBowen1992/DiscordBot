@@ -71,7 +71,7 @@ public class Main extends ListenerAdapter{
 
       EmbedBuilder result= new EmbedBuilder();
       result.setTitle("Dick is bad. Dix is lvl99");
-      result.setImage("https://tonybowen.me/dix.png");
+      result.setImage("http://tonybowen.me/dix.png");
       event.getChannel().sendMessage(result.build()).queue();
 
 
