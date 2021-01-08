@@ -95,7 +95,7 @@ public class Main extends ListenerAdapter{
 
       SearchFeed feed = null;
       try {
-        feed = giphy.search(gifSearch, 1, (int) (((Math.random()*(500 - 1))) + 1));
+        feed = giphy.search(gifSearch, 1, (int) (((Math.random()*(20 - 1))) + 1));
       } catch (GiphyException e) {
         e.printStackTrace();
       }
