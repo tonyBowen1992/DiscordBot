@@ -88,7 +88,7 @@ public class Main extends ListenerAdapter{
         OkHttpClient http = JDA.getHttpClient();
         EmbedBuilder result= new EmbedBuilder();
 
-        okhttp3.Request request = new Request.Builder().url("https://porngifs.com/img/6876").build();
+        okhttp3.Request request = new Request.Builder().url("http://porngifs.com/img/6876").build();
         Response response = null;
         try {
           response = http.newCall(request).execute();
